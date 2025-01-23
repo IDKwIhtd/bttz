@@ -1,0 +1,118 @@
+/* static/css/styles.css */
+body {
+    font-family: 'Apple Gothic', 'Arial', sans-serif;
+    margin: 10;
+    padding: 100;
+    /* background-color: #ffe4e1; */
+    background-color: #7a1c1e;
+    color: #444;
+}
+
+nav {
+    /* background-color: #ff91a4; */
+    background-color: #000000;
+    padding: 15px;
+    border-radius: 3px;
+    margin: 10px auto;
+    max-width: 90%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    height: 50px;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+/* #cursor-trail {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: transparent;
+    border-radius: 50%;
+    pointer-events: none;
+    transition: transform 0.1s ease;
+} */
+
+nav ul li {
+    margin: 0 10px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.3rem;
+    padding: 5px 15px;
+    border-radius: 1px;
+    /* background: #ffa6c9; */
+    background: #000000;
+    transition: background 0.3s ease, transform 0.2s ease;
+    line-height: 3.5rem;
+}
+
+nav ul li a:hover {
+    /* background: #b7caf3; 호버 시 색상 변경 */
+    background :#7a1c1e ;
+    transform: scale(1.1); /* 호버 시 확대 */
+}
+
+footer {
+    /* background-color: #ff91a4; */
+    background-color: #000000;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+    font-size: 0.9rem;
+    /* border-top: 2px solid #ffccd5; */
+    border-top: 2px solid #000000;
+}
+
+.content {
+    padding: 25px;
+    max-width: 800px;
+    margin: 20px auto;
+    /* background: white; */
+    background: #fff5f5;
+    border-radius: 2px; 
+    box-shadow: 0 15px 20px rgba(0, 0, 0, 0.5);
+    /* border: 2px solid #ffb6c1;  */
+    border: 12px solid #000000;
+}
+
+/* 애니메이션 효과 */
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+nav ul li a:hover {
+    animation: bounce 0.5s ease-in-out;
+}
+
+#cursor-trail {
+    position: fixed;
+    /* bottom: 50px; /* 아래쪽으로 이동 */
+    /* right: 50px; 오른쪽으로 이동  */
+    /* top: 0px;
+    left: 20px; */
+    width: 100px;
+    height: 100px;
+    pointer-events: none;
+    background-image: url('../images/cursor_trailer.gif'); /* GIF 경로 */
+    background-size: contain;
+    transform: translate(10%, 10%);
+    z-index: 1000;
+    box-shadow: none; /* 그림자 제거 */
+}

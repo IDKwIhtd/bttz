@@ -1,0 +1,23 @@
+# Python 기본
+__pycache__/
+*.py[cod]
+*.pyo
+*.log
+
+# Virtual environment (가상환경)
+venv/
+env/
+*.egg-info/
+
+# SQLite Database
+db.sqlite3
+
+# Django static files (Production 환경에서는 제외)
+staticfiles/
+media/
+
+# IDE/OS Specific
+.DS_Store
+.idea/
+.vscode/
+*.swp
