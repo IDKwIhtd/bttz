@@ -3,15 +3,24 @@
 ## A sleek yet chill social app powered by Django  
 
 ---  
-bttz  
-├── bttz/                | 주요 앱 디렉토리  
-│   ├── post/            | 게시글 관련 기능 구현  
-│   ├── static/          | 정적 파일(css, js 등)  
-│   ├── templates/       | HTML 템플릿 파일  
-│   └── user/            | 사용자 관리 기능  
-├── db.sqlite3           | SQLite 데이터베이스 파일  
-├── manage.py            | Django 관리 및 실행 파일  
-└── requirements.txt     | 프로젝트 의존성 패키지 파일    
+.
+├── core/                    # Django 프로젝트의 메인 설정 앱 (settings.py, urls.py 등)
+│
+├── post/                    # 게시글(Post) 기능을 담당하는 앱
+│
+├── user/                    # 사용자(User) 인증 및 회원가입 기능을 담당하는 앱
+│
+├── templates/              # 전역 HTML 템플릿 폴더 (base.html, navbar.html 등 공통 요소)
+│
+├── static/                 # 정적 파일(css, js, image 등) 저장 폴더
+│
+├── manage.py               # Django 프로젝트 명령어 실행용 엔트리포인트
+│
+├── requirements.txt        # 프로젝트 의존 패키지 목록
+│
+├── .gitignore              # Git에서 제외할 파일/폴더 목록
+│
+└── README.md               # 프로젝트 설명 문서
   
 #### 주요 기능  
 - 사용자 관리 : 회원가입, 로그인/로그아웃 기능 제공  
