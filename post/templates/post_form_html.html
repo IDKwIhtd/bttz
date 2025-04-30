@@ -8,5 +8,5 @@
     {{ form.as_p }}
     <button type="submit">Save</button>
 </form>
-<a href="{% url 'post_list_html' %}">Cancel</a>
+<a href="{% url 'post_detail_html' form.instance.pk %}">Cancel</a>
 {% endblock %}

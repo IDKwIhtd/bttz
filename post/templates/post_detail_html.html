@@ -3,10 +3,97 @@
 {% block content %}
 <h1>{{ post.title }}</h1>
 <p>{{ post.content }}</p>
+
+{% if user.is_authenticated %}
+<form action="{% url 'post_like_html' post.pk %}" method="POST" style="display: inline;">
+    {% csrf_token %}
+    {% if user in post.likes.all %}
+    <button type="submit" style="background: none; border: none;">
+        <i class="bi bi-chat-heart" style="font-size: 2rem;"></i>
+    </button>
+    {% else %}
+    <button type="submit" style="background: none; border: none;">
+        <i class="bi bi-chat" style="font-size: 2rem;"></i>
+    </button>
+    {% endif %}
+</form>
+{% else %}
+<a href="{% url 'user_login' %}?next={{ request.path }}">
+    <i class="bi bi-chat" style="font-size: 2rem;"></i> 로그인하고 좋아요 누르기
+</a>
+{% endif %}
+
+<div>이 글을 {{ post.like_count }}명이 좋아해요</div>
+
 <p>작성자: {{ post.author }}</p>
 <p>작성일: {{ post.created_at }}</p>
+
 {% if user.is_authenticated and post.author == user %}
-<a href="{% url 'post_update' post.pk %}">수정</a><br>
+<a href="{% url 'post_update_html' post.pk %}">수정</a>
+<form action="{% url 'post_delete_html' post.pk %}" method="POST" style="display:inline;"
+    onsubmit="return confirm('정말 삭제하시겠습니까?');">
+    {% csrf_token %}
+    <button type="submit" style="background: none; border: none; color: black;">삭제</button>
+</form>
+<br>
 {% endif %}
 <a href="{% url 'post_list_html' %}">목록으로 돌아가기</a>
+
+<hr>
+<h3>댓글</h3>
+
+{% if user.is_authenticated %}
+<form action="{% url 'comment_create_html' post.pk %}" method="POST">
+    {% csrf_token %}
+    <textarea name="content" rows="3" cols="40" placeholder="댓글을 입력하세요"></textarea><br>
+    <button type="submit">댓글 작성</button>
+</form>
+{% else %}
+<p><a href="{% url '/user/login' %}?next={{ request.path }}">로그인</a> 후 댓글을 작성할 수 있습니다.</p>
+{% endif %}
+
+<ul>
+    {% for comment in post.comments.all %}
+    <li>
+        <div id="comment-display-{{ comment.pk }}">
+            <strong>{{ comment.author.username }}</strong>: <span>{{ comment.content }}</span>
+            <small>({{ comment.created_at|date:"Y-m-d H:i" }})</small>
+            {% if user.is_authenticated and user == comment.author %}
+            <a href="javascript:void(0);" onclick="toggleEditForm('{{ comment.pk }}')">수정</a>
+            <form action="{% url 'comment_delete_html' comment.pk %}" method="POST" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" style="background: none; border: none;">
+                    <i class="bi bi-x-circle" style="font-size: 1rem;"></i> 삭제
+                </button>
+            </form>
+            {% endif %}
+        </div>
+
+        {% if user.is_authenticated and user == comment.author %}
+        <form id="comment-edit-form-{{ comment.pk }}" action="{% url 'comment_update_html' comment.pk %}" method="POST"
+            style="display: none;">
+            {% csrf_token %}
+            <textarea name="content" rows="2" cols="40">{{ comment.content }}</textarea>
+            <button type="submit">저장</button>
+        </form>
+        {% endif %}
+    </li>
+    {% empty %}
+    <li>아직 댓글이 없습니다.</li>
+    {% endfor %}
+</ul>
+
+<script>
+    function toggleEditForm(commentId) {
+        const form = document.getElementById(`comment-edit-form-${commentId}`);
+        const display = document.getElementById(`comment-display-${commentId}`);
+        if (form.style.display === "none") {
+            form.style.display = "block";
+            display.style.display = "none";
+        } else {
+            form.style.display = "none";
+            display.style.display = "block";
+        }
+    }
+</script>
 {% endblock %}
