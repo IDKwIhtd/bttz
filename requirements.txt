@@ -1,8 +1,11 @@
 asgiref==3.8.1
 asttokens==3.0.0
 decorator==5.1.1
+diff-match-patch==20241021
 Django==5.1.5
+django-decouple==2.1
 django-extensions==3.2.3
+django-import-export==4.3.7
 djangorestframework==3.16.0
 exceptiongroup==1.2.2
 executing==2.1.0
@@ -13,11 +16,13 @@ parso==0.8.4
 pexpect==4.9.0
 pillow==11.1.0
 prompt_toolkit==3.0.48
+psycopg2-binary==2.9.10
 ptyprocess==0.7.0
 pure_eval==0.2.3
 Pygments==2.19.1
 sqlparse==0.5.3
 stack-data==0.6.3
+tablib==3.8.0
 traitlets==5.14.3
 typing_extensions==4.12.2
 wcwidth==0.2.13
